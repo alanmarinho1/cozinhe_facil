@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "912377548710",
+    "project_id": "cozinhe-facil",
+    "storage_bucket": "cozinhe-facil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912377548710:android:28137565a8fed677dfc967",
+        "android_client_info": {
+          "package_name": "com.cozinhe_facil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "912377548710-fnl41s2mhtco84tfq2p2bobv79rn71ss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOH4mkjsnmU9YZAMX19xKY9FoPs7tBXKk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "912377548710-fnl41s2mhtco84tfq2p2bobv79rn71ss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
