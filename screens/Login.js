@@ -4,9 +4,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import {Screen, Logo, DivButtonRegistrar, DivButtonLogin } from '../styles/styles'
-import PressableButtonLogin from '../components/ButtonLogin';
-import PressableButton from '../components/Button';
+import {Screen, Logo, DivButtonRegister, DivButtonLogin } from '../styles/styles'
+import {PressableLoginButton, PressableRegisterButton} from '../components/Button';
 
 
 export default function Login(){
@@ -14,26 +13,16 @@ export default function Login(){
 
     <><Screen>
       <Logo source={require('../assets/logo.png')} />
-      {/* <PressableButtonLogin
-        onPress={() => true}
-        title='ENTRAR'
-        bgColor='#00663D' /> */}
-
-
-
-      {/* <PressableButton
-      onPress={() => true}
-      title='REGISTRAR'
-      bgColor='#FF9C33' /> */}
     </Screen>
-    <DivButtonRegistrar>
-    <PressableButton
+    <DivButtonRegister>
+    <PressableRegisterButton
       onPress={() => true}
       title='REGISTRAR'
       bgColor='#FF9C33' />
-    </DivButtonRegistrar>
+    </DivButtonRegister>
+
     <DivButtonLogin>
-    <PressableButtonLogin
+    <PressableLoginButton
         onPress={() => alert('You tapped the button!')}
         title='ENTRAR'
         bgColor='#00663D' />

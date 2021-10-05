@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity, TextInput } from "react-native";
 import styled, { css } from "styled-components/native";
 
 
@@ -9,7 +9,7 @@ export const Screen = styled.View`
   margin-bottom: -100px;
 `;
 
-export const DivButtonRegistrar = styled.View`
+export const DivButtonRegister = styled.View`
   background-color: #FFF5EB;
   width: 180px;
   height: 100px;
@@ -27,9 +27,26 @@ export const Logo = styled.Image`
   position: absolute;
   width: 191px;
   height: 207px;
-  top: 170px;
-  left: 87px;
+  top: 150px;
+  left: 85px;
 `;
+
+export const InputText = styled.TextInput`
+  width: 320px;
+  height: 45px;
+  background-color: #FFF;
+  align-self: stretch;
+  border-color: #EEE;
+  border-width: 1px;
+  padding: 0 0 0 20px;
+  margin-bottom: 10px;
+  top: 350px;
+  left: 20px;
+`
+export const InputTextField = ({placeholder, value, onChangeText}) => (
+  <InputText placeholder={placeholder} value={value} onChangeText={onChangeText}>
+  </InputText>
+);
 
 // const styles = StyleSheet.create({
 //     container: {
