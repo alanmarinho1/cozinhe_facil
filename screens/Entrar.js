@@ -13,6 +13,7 @@ import firebase from '@react-native-firebase/app';
 import { ReactNativeFirebase } from '@react-native-firebase/app';
 
 
+
 export default class Entrar extends Component{
     
     state = {
@@ -24,8 +25,14 @@ export default class Entrar extends Component{
         const {email, password} = this.state
 
         try{
-            
+            const user = await ReactNativeFirebase.auth().signInWithEmailAndPassword(email, password)
+
+            this.setState({isAuthenticated: true})
+            console.log(user)
+        } catch(err) {
+            console.log(err)
         }
+        
     }
     render() {
         return(
@@ -41,12 +48,13 @@ export default class Entrar extends Component{
                 value={this.state.password}
                 onChangeText={password => this.setState({password})}
                 />
-                <TouchableOpacity style={styles.enterButton} onPress={() => true}>
+                <TouchableOpacity style={styles.enterButton} onPress={() => this.login}>
                     <Text style={styles.enterButtonText}>LOGIN</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.backButton} onPress={() => }>
+                <TouchableOpacity style={styles.backButton} onPress={() => true}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
+                {this.state.isAuthenticated ? <Text>Logado com sucesso</Text>: null}
             </Screen>
         )
     }
