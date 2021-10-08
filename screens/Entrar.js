@@ -8,36 +8,31 @@ import {
 } from 'react-native';
 import {Screen, InputTextField, Logo} from '../styles/styles'
 import PressableEnterButton from '../components/Button';
-import firebase from '@react-native-firebase/app';
-import { ReactNativeFirebase } from '@react-native-firebase/app';
+import { firebase } from '@react-native-firebase/auth';
 import Login from './Login';
 
 
 
 export default class Entrar extends Component{
-    
-    telaInicial = async() => {
-
-    }
 
     state = {
         email: '',
         password: '',
         isAuthenticated: false,
     };
-    // login = async() => {
-    //     const {email, password} = this.state
+    login = async() => {
+        const {email, password} = this.state
 
-    //     try{
-    //         const user = await ReactNativeFirebase.auth().signInWithEmailAndPassword(email, password)
+        try{
+            const user = await firebase.auth().signInWithEmailAndPassword(email, password)
 
-    //         this.setState({isAuthenticated: true})
-    //         console.log(user)
-    //     } catch(err) {
-    //         console.log(err)
-    //     }
+            this.setState({isAuthenticated: true})
+            console.log(user)
+        } catch(err) {
+            console.log(err)
+        }
         
-    // }
+    }
     render() {
         return(
             <Screen>
@@ -52,13 +47,13 @@ export default class Entrar extends Component{
                 value={this.state.password}
                 onChangeText={password => this.setState({password})}
                 />
-                <TouchableOpacity style={styles.enterButton} onPress={() => alert('Insira os dados para login')}>
+                <TouchableOpacity style={styles.enterButton} onPress={this.login}>
                     <Text style={styles.enterButtonText}>LOGIN</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.backButton} onPress={() => alert('Tela Inicial')}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
-                {this.state.isAuthenticated ? <Text>Logado com sucesso</Text>: null}
+                {this.state.isAuthenticated ? alert('Login realizado com sucesso'): null}
             </Screen>
         )
     }
