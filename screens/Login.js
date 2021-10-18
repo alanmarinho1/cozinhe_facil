@@ -7,7 +7,7 @@ import {
 import {Screen, Logo, DivButtonRegister, DivButtonLogin } from '../styles/styles'
 import {PressableLoginButton, PressableRegisterButton} from '../components/Button';
 
-export default function Login(){
+export default function Login({navigation}){
   return(
 
     <><Screen>
@@ -15,54 +15,18 @@ export default function Login(){
     </Screen>
     <DivButtonRegister>
     <PressableRegisterButton
-      onPress={() => alert('Tela de Registro')}
+      onPress={() => navigation.navigate('Registrar')}
       title='REGISTRAR'
       bgColor='#FF9C33' />
     </DivButtonRegister>
 
     <DivButtonLogin>
     <PressableLoginButton
-        onPress={() => alert('Tela de Login')}
+        onPress={() => navigation.navigate('Entrar')}
         title='ENTRAR'
         bgColor='#00663D' />
     </DivButtonLogin>
-    {/* <DivButton>
-        <Text>Teste</Text>
-    </DivButton> */}
     </>
 
   )
 }
-
-
-
-// export default class Login extends Component(){
-  
-//   render(){
-//     return(
-
-//       <><Screen>
-//         <Logo source={require('../assets/logo.png')} />
-//       </Screen>
-//       <DivButtonRegister>
-//       <PressableRegisterButton
-//         onPress={() => true}
-//         title='REGISTRAR'
-//         bgColor='#FF9C33' />
-//       </DivButtonRegister>
-
-//       <DivButtonLogin>
-//       <PressableLoginButton
-//           onPress={() => alert('You tapped the button!')}
-//           title='ENTRAR'
-//           bgColor='#00663D' />
-//       </DivButtonLogin>
-//       {/* <DivButton>
-//           <Text>Teste</Text>
-//       </DivButton> */}
-//       </>
-
-//     )
-//   }
-// }
-
