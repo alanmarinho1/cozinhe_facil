@@ -13,7 +13,7 @@ import Login from './Login';
 
 
 
-export default class Entrar extends Component{
+export default function Entrar({navigation}){
 
     state = {
         email: '',
@@ -30,10 +30,9 @@ export default class Entrar extends Component{
             console.log(user)
         } catch(err) {
             console.log(err)
-        }
-        
+        } 
     }
-    render() {
+ 
         return(
             <Screen>
                 <Logo source={require('../assets/logo.png')} />
@@ -50,13 +49,12 @@ export default class Entrar extends Component{
                 <TouchableOpacity style={styles.enterButton} onPress={this.login}>
                     <Text style={styles.enterButtonText}>LOGIN</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.backButton} onPress={() => alert('Tela Inicial')}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
                 {this.state.isAuthenticated ? alert('Login realizado com sucesso'): null}
             </Screen>
         )
-    }
 }
 
 const styles = StyleSheet.create({

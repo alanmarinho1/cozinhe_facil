@@ -10,7 +10,7 @@ import {Screen, InputTextField, Logo} from '../styles/styles'
 import firebase from '@react-native-firebase/app';
 
 
-export default function Entrar(){
+export default function Registrar({navigation}){
     state = {
         email: '',
         password: '',
@@ -32,7 +32,7 @@ export default function Entrar(){
                 <TouchableOpacity style={styles.enterButton} onPress={() => alert('Insira seu email e senha')}>
                     <Text style={styles.enterButtonText}>REGISTRAR</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.backButton} onPress={() => alert('Tela Inicial')}>
+                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
                 {this.state.isAuthenticated ? <Text>Registrado com sucesso</Text>: null}
