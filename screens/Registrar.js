@@ -1,62 +1,99 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {
   Text,
   View,
   StyleSheet,
   TouchableOpacity,
+  KeyboardAvoidingView,
   Alert
 } from 'react-native';
-import {Screen, InputTextField, Logo} from '../styles/styles'
-import firebase from '@react-native-firebase/app';
+import {Screen, InputTextField, Logo, DivButtonBack} from '../styles/styles'
+import {PressableBackButton} from '../components/Button';
+import { firebase } from '@react-native-firebase/auth';
 
 
 export default function Registrar({navigation}){
-    state = {
-        email: '',
-        password: '',
-        isAuthenticated: false,
-    };
+    
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    const [errorLogin, setErrorLogin] = useState("")
+
+    const registerFirebase = () => {
+        firebase.auth()
+            .createUserWithEmailAndPassword(email, senha)
+            .then(() => {
+                alert("Conta criada com sucesso, favor realizar login");
+                navigation.navigate('Entrar')
+            })
+            .catch(error => {
+                setErrorLogin(true)
+                if (error.code === 'auth/email-already-in-use') {
+                    alert("Email já em uso");
+                }
+
+                if (error.code === 'auth/invalid-email') {
+                alert("Formato de email inválido");
+                }
+
+                if (error.code === 'auth/weak-password') {
+                    alert("Favor inserir senha de no minimo 6 caracteres");
+                }
+
+                console.error(error);
+            });
+    } 
+
+    useEffect(() => {
+
+    }, []);
         return(
-            <Screen>
-                <Logo source={require('../assets/logo.png')} />
-                <InputTextField 
-                placeholder='Digite seu e-mail'
-                value={this.state.email}
-                onChangeText={email => this.setState({email})}
-                />
-                <InputTextField 
-                placeholder='Digite sua senha'
-                value={this.state.password}
-                onChangeText={password => this.setState({password})}
-                />
-                <TouchableOpacity style={styles.enterButton} onPress={() => alert('Insira seu email e senha')}>
-                    <Text style={styles.enterButtonText}>REGISTRAR</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                    <Text style={styles.backButtonText}>VOLTAR</Text>
-                </TouchableOpacity>
-                {this.state.isAuthenticated ? <Text>Registrado com sucesso</Text>: null}
-            </Screen>
+            <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFF5EB'}} behavior="position">
+                <Screen>
+                    <Logo source={require('../assets/logo.png')} />
+                    <InputTextField 
+                    placeholder='Digite seu e-mail'
+                    type="text"
+                    value={email}
+                    onChangeText={(text) => setEmail(text)}
+                    />
+                    <InputTextField 
+                    placeholder='Digite sua senha'
+                    type="text"
+                    value={senha}
+                    onChangeText={(text) => setSenha(text)}
+                    />
+                    <TouchableOpacity style={styles.registerButton} onPress={registerFirebase}>
+                        <Text style={styles.registerButtonText}>REGISTRAR</Text>
+                    </TouchableOpacity>
+                    <DivButtonBack>
+                        <PressableBackButton
+                        onPress={() => navigation.goBack()}
+                        title='VOLTAR'
+                        bgColor='#FF9C33' />
+                    </DivButtonBack>
+                    {/* {this.state.isAuthenticated ? <Text>Registrado com sucesso</Text>: null} */}
+                </Screen>
+            </KeyboardAvoidingView>
         )
 }
 
 const styles = StyleSheet.create({
-    enterButton: {
+    registerButton: {
         left: 22,
         width: 150,
         height: 45,
         padding: 10,
         borderRadius: 10,
-        top: 380,
+        top: 345,
         alignItems:'center',
         backgroundColor: '#00663D'
     },
-    enterButtonText:{
-        width: 80,
+    registerButtonText:{
+        width: 115,
         height: 35,
         alignSelf: 'center',
         bottom: 5,
-        fontSize: 23,
+        fontSize: 22,
         color: '#FFF'
     },
     backButton: {

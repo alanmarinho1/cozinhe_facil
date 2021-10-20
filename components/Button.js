@@ -11,14 +11,12 @@ const LoginButton = styled.TouchableOpacity`
   background-color: ${props => props.bgColor};
 `;
 const LoginButtonText = styled.Text`
-
-  width: 75px;
+  width: 90px;
   height: 25px;
-  left: 25px;
-  bottom: 3px
-  font-size: 20px;
+  left: 20px;
+  bottom: 5px;
+  font-size: 23px;
   color: white;
-  
 `;
 
 const RegisterButton = styled.TouchableOpacity`
@@ -31,11 +29,11 @@ const RegisterButton = styled.TouchableOpacity`
 `;
 const RegisterButtonText = styled.Text`
 
-    width: 100px;
+    width: 115px;
     height: 30px;
-    left: 20px;
-    bottom: 3px
-    font-size: 18px;
+    left: 10px;
+    bottom: 5px;
+    font-size: 22px;
     color: black;
     
 `;
@@ -53,7 +51,7 @@ const EnterButtonText = styled.Text`
     width: 100px;
     height: 30px;
     left: 20px;
-    bottom: 3px
+    bottom: 3px;
     font-size: 18px;
     color: #FFFFFF;
 `;
@@ -70,10 +68,10 @@ const BackButtonText = styled.Text`
 
     width: 100px;
     height: 30px;
-    left: 20px;
-    bottom: 3px
-    font-size: 18px;
-    color: #FFFFFF;
+    left: 25px;
+    bottom: 5px;
+    font-size: 22px;
+    color: black;
 `;
 
 export const PressableLoginButton = ({ onPress, bgColor, title }) => (

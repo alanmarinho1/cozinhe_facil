@@ -10,23 +10,23 @@ import {PressableLoginButton, PressableRegisterButton} from '../components/Butto
 export default function Login({navigation}){
   return(
 
-    <><Screen>
+    <Screen>
       <Logo source={require('../assets/logo.png')} />
-    </Screen>
-    <DivButtonRegister>
-    <PressableRegisterButton
-      onPress={() => navigation.navigate('Registrar')}
-      title='REGISTRAR'
-      bgColor='#FF9C33' />
-    </DivButtonRegister>
+    
+      <DivButtonRegister>
+      <PressableRegisterButton
+        onPress={() => navigation.navigate('Registrar')}
+        title='REGISTRAR'
+        bgColor='#FF9C33' />
+      </DivButtonRegister>
 
-    <DivButtonLogin>
-    <PressableLoginButton
-        onPress={() => navigation.navigate('Entrar')}
-        title='ENTRAR'
-        bgColor='#00663D' />
-    </DivButtonLogin>
-    </>
+      <DivButtonLogin>
+      <PressableLoginButton
+          onPress={() => navigation.navigate('Entrar')}
+          title='ENTRAR'
+          bgColor='#00663D' />
+      </DivButtonLogin>
+    </Screen>
 
   )
 }

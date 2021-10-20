@@ -16,6 +16,7 @@ import PressableEnterButton from '../components/Button';
 import { firebase } from '@react-native-firebase/auth';
 
 
+
 export default function Entrar({navigation}){
  
     const [email, setEmail] = useState("")
@@ -23,17 +24,34 @@ export default function Entrar({navigation}){
     const [errorLogin, setErrorLogin] = useState("")
 
     const loginFirebase = () => {
+        firebase.auth()
+            .signInWithEmailAndPassword(email, senha)
+            .then(() => {
+                alert("Login realizado");
+                navigation.navigate('TelaPrincipal')
+            })
+            .catch(error => {
+                setErrorLogin(true)
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                alert('Email/senha invalidos');
+                }
 
+                if (error.code === 'auth/invalid-email') {
+                alert("Formato de email inválido");
+                }
+
+                console.error(error);
+            });
     } 
 
     useEffect(() => {
 
     }, []);
     return(
-        <Screen>
-            <Logo source={require('../assets/logo.png')} />
-            <KeyboardAvoidingView>  
-                <InputTextField 
+        <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFF5EB'}} behavior="position">
+            <Screen>
+                <Logo source={require('../assets/logo.png')} />
+                <InputTextField
                 placeholder='Digite seu e-mail'
                 type="text"
                 onChangeText={(text) => setEmail(text)}
@@ -46,17 +64,23 @@ export default function Entrar({navigation}){
                 onChangeText={(text) => setSenha(text)}
                 value={senha}
                 />
-                <TouchableOpacity style={styles.enterButton} onPress={() => true}>
-                    <Text style={styles.enterButtonText}>LOGIN</Text>
-                </TouchableOpacity>
+                    
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
-                {errorLogin === true ? alert("email ou senha inválidos") : false}
-
+                {errorLogin === true ? true : false}
+                {email === "" || senha === "" ? <TouchableOpacity style={styles.enterButton2} disabled={true} onPress={() => true}>
+                    <Text style={styles.enterButtonText}>LOGIN</Text>
+                </TouchableOpacity>
+                :
+                <TouchableOpacity style={styles.enterButton2} onPress={loginFirebase}>
+                    <Text style={styles.enterButtonText}>LOGIN</Text>
+                </TouchableOpacity>}
+                
                 {/* {this.state.isAuthenticated ? () => navigation.navigate('TelaPrincipal'): null} */}
-            </KeyboardAvoidingView>
-        </Screen>
+            
+            </Screen>
+        </KeyboardAvoidingView>
     )
 }
 
@@ -141,7 +165,7 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 10,
         borderRadius: 10,
-        top: 335,
+        top: 345,
         alignItems:'center',
         backgroundColor: '#FF9C33'
     },
@@ -152,5 +176,15 @@ const styles = StyleSheet.create({
         bottom: 5,
         fontSize: 23,
         color: '#000'
-    }
+    },
+    enterButton2: {
+        left: 22,
+        width: 150,
+        height: 45,
+        padding: 10,
+        borderRadius: 10,
+        top: 300,
+        alignItems:'center',
+        backgroundColor: '#00663D'
+    },
 })
