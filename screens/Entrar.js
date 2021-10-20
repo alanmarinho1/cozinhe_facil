@@ -1,61 +1,120 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import {
   Image,
   Text,
   View,
   StyleSheet,
-  TouchableOpacity
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  KeyboardAvoidingViewBase,
+  KeyboardAvoidingViewComponent
 } from 'react-native';
 import {Screen, InputTextField, Logo} from '../styles/styles'
 import PressableEnterButton from '../components/Button';
 import { firebase } from '@react-native-firebase/auth';
-import Login from './Login';
-
 
 
 export default function Entrar({navigation}){
-
-    state = {
-        email: '',
-        password: '',
-        isAuthenticated: false,
-    };
-    login = async() => {
-        const {email, password} = this.state
-
-        try{
-            const user = await firebase.auth().signInWithEmailAndPassword(email, password)
-
-            this.setState({isAuthenticated: true})
-            console.log(user)
-        } catch(err) {
-            console.log(err)
-        } 
-    }
  
-        return(
-            <Screen>
-                <Logo source={require('../assets/logo.png')} />
+    const [email, setEmail] = useState("")
+    const [senha, setSenha] = useState("")
+    const [errorLogin, setErrorLogin] = useState("")
+
+    const loginFirebase = () => {
+
+    } 
+
+    useEffect(() => {
+
+    }, []);
+    return(
+        <Screen>
+            <Logo source={require('../assets/logo.png')} />
+            <KeyboardAvoidingView>  
                 <InputTextField 
                 placeholder='Digite seu e-mail'
-                value={this.state.email}
-                onChangeText={email => this.setState({email})}
+                type="text"
+                onChangeText={(text) => setEmail(text)}
+                value={email}
                 />
-                <InputTextField 
+                <InputTextField
                 placeholder='Digite sua senha'
-                value={this.state.password}
-                onChangeText={password => this.setState({password})}
+                secureTextEntry={true}
+                type="text"
+                onChangeText={(text) => setSenha(text)}
+                value={senha}
                 />
-                <TouchableOpacity style={styles.enterButton} onPress={this.login}>
+                <TouchableOpacity style={styles.enterButton} onPress={() => true}>
                     <Text style={styles.enterButtonText}>LOGIN</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
-                {this.state.isAuthenticated ? alert('Login realizado com sucesso'): null}
-            </Screen>
-        )
+                {errorLogin === true ? alert("email ou senha inválidos") : false}
+
+                {/* {this.state.isAuthenticated ? () => navigation.navigate('TelaPrincipal'): null} */}
+            </KeyboardAvoidingView>
+        </Screen>
+    )
 }
+
+// export default function Entrar({navigation}){
+
+//     // state = {
+//     //     email: '',
+//     //     password: '',
+//     //     isAuthenticated: false,
+//     // };
+//     const [email, setEmail] = useState("")
+//     const [password, setPassword] = useState("")
+//     const [isAuthenticated, setIsAuthenticated] = useState(false)
+    
+//     // login = async() => {
+//     //     //const {email, password} = this.state
+        
+
+
+//     //     try{
+//     //         const user = await firebase.auth().signInWithEmailAndPassword(email, password)
+
+//     //         setIsAuthenticated(true)
+//     //         console.log(user)
+//     //     } catch(err) {
+//     //         alert('Email/senha incorretos')
+//     //     } 
+//     // }
+ 
+//     return(
+//         <Screen>
+//             <KeyboardAvoidingView>
+//                 <Logo source={require('../assets/logo.png')} />
+//                 <InputTextField 
+//                 placeholder='Digite seu e-mail'
+//                 type="text"
+//                 value={email}
+//                 onChangeText={(text) => setEmail(text)}
+//                 />
+//                 <InputTextField
+//                 secureTextEntry={true}
+//                 placeholder='Digite sua senha'
+//                 type="text"
+//                 value={password}
+//                 onChangeText={text => setPassword(text)}
+//                 />
+//                 <TouchableOpacity style={styles.enterButton} onPress={() => true}>
+//                     <Text style={styles.enterButtonText}>LOGIN</Text>
+//                 </TouchableOpacity>
+//                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+//                     <Text style={styles.backButtonText}>VOLTAR</Text>
+//                 </TouchableOpacity>
+//                 {/* {this.state.isAuthenticated ? () => navigation.navigate('TelaPrincipal'): null} */}
+//             </KeyboardAvoidingView>
+//         </Screen>
+        
+//     )
+// }
 
 const styles = StyleSheet.create({
     enterButton: {

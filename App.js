@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './screens/Login'
 import Entrar from './screens/Entrar'
 import Registrar from './screens/Registrar'
+import TelaPrincipal from './screens/TelaPrincipal'
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function App() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
+        <Stack.Screen name="TelaPrincipal" component={TelaPrincipal} />
       </Stack.Navigator>
     </NavigationContainer>
   );

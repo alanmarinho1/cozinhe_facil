@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Image, TouchableOpacity, TextInput } from "react-native";
 import styled, { css } from "styled-components/native";
+import { Component } from "react";
 
 
 export const Screen = styled.View`
@@ -43,9 +44,9 @@ export const InputText = styled.TextInput`
   top: 350px;
   left: 20px;
 `
-export const InputTextField = ({placeholder, value, onChangeText}) => (
-  <InputText placeholder={placeholder} value={value} onChangeText={onChangeText}>
-  </InputText>
+export const InputTextField = ({placeholder, secureTextEntry, value, onChangeText}) => (
+    <InputText placeholder={placeholder} secureTextEntry={secureTextEntry} value={value} onChangeText={onChangeText}></InputText>
+  
 );
 
 // const styles = StyleSheet.create({
