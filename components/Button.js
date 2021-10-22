@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import Image from 'react-native'
+import { Menu } from '../styles/styles';
 
 const LoginButton = styled.TouchableOpacity`
 
@@ -73,12 +75,6 @@ const BackButtonText = styled.Text`
     font-size: 22px;
     color: black;
 `;
-
-export const PressableLoginButton = ({ onPress, bgColor, title }) => (
-  <LoginButton onPress={onPress} bgColor={bgColor}>
-    <LoginButtonText>{title}</LoginButtonText>
-  </LoginButton>
-);
 
 export const PressableRegisterButton = ({ onPress, bgColor, title }) => (
   <RegisterButton onPress={onPress} bgColor={bgColor}>

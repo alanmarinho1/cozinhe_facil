@@ -17,7 +17,7 @@ export const MainScreen = styled.View`
 
 export const DivRecipeScreen = styled.View`
   
-  border: 1px solid red;
+  
 `;
 
 export const DivTopo = styled.View`
@@ -25,7 +25,6 @@ export const DivTopo = styled.View`
   width: 360px;
   height: 60px;
   margin-bottom: 2px;
-  border: 1px solid red;
   background: #FF9C33;
   border-radius: 1px;
 `
@@ -33,7 +32,6 @@ export const DivMenu = styled.View`
   width: 50px;
   height: 60px;
   position: absolute;
-  border: 2px solid red;
 `
 export const DivSearch = styled.View`
   
@@ -42,12 +40,11 @@ export const DivSearch = styled.View`
   left: 50px;
   margin-top: 5px;
   align-items: flex-end;
-  border: 1px solid green;
+
 `
 export const DivTitleScreen = styled.View`
   width: 360px;
   height: 40px;
-  border: 1px solid red;
   background: #FF9C33;
   border-radius: 1px;
 `
@@ -57,21 +54,51 @@ export const DivButtonRegister = styled.View`
   width: 180px;
   height: 100px;
   left: 180px;
-  top: 450px;
+  top: 250px;
 `
 export const DivButtonBack = styled.View`
   background-color: #FFF5EB;
   width: 180px;
   height: 100px;
   left: 180px;
-  top: 300px;
+  top: 100px;
 `
 
 export const DivButtonLogin = styled.View`
 
 width: 180px;
 height: 100px;
-top: 350px;
+top: 150px;
+`
+export const DivUserDrawer = styled.View`
+  width: 283px;
+  height: 100px;
+  /* background-color: rgba(255,255,255,0.5); */
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(255,255,255,0.5);
+`
+
+export const DivUserData = styled.View`
+  width: 200px;
+  height: 60px;
+  left: 80px;
+  top: 15px;
+`
+
+export const DrawerUserNoImage = styled.Image`
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  margin-left: 10px;
+
+`
+export const DrawerUserImage = styled.Image`
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  margin-left: 10px;
+  border-radius: 30px;
+
 `
 
 export const Logo = styled.Image`
@@ -89,16 +116,22 @@ export const Lupa = styled.Image`
   position: absolute;
   right: 10px;
   top: 15px;
-  border: 2px solid red;
   z-index: 1px;
 `;
 
-export const LivroReceitas = styled.Image`
+export const IconTitle = styled.Image`
   position: absolute;
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   left: 234px;
-  top: 10px;
+  top: 5px;
+`
+
+export const MenuImage = styled.Image`
+  height: 50px;
+  width: 30px;
+  top: 7px;
+  left: 8px;
 `
 
 export const InputText = styled.TextInput`
@@ -110,7 +143,7 @@ export const InputText = styled.TextInput`
   border-width: 1px;
   padding: 0 0 0 20px;
   margin-bottom: 10px;
-  top: 330px;
+  top: 130px;
   left: 20px;
 `
 export const InputSearch = styled.TextInput`
@@ -124,7 +157,6 @@ export const InputSearch = styled.TextInput`
   text-align: center;
   border-color: #EEE;
   border-radius: 50px;
-  border: 2px solid red;
 `
 export const TitleScreen = styled.Text`
   position: absolute;

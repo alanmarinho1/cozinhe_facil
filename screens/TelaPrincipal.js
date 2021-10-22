@@ -4,6 +4,7 @@ import {
   ScrollView,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import {
   MainScreen, 
@@ -15,10 +16,11 @@ import {
   Lupa, 
   DivMenu,
   TitleScreenText,
-  LivroReceitas } from '../styles/styles'
-import {PressableLoginButton, PressableRegisterButton} from '../components/Button';
+  IconTitle,
+  MenuImage } from '../styles/styles'
+import {PressableMenuButton, PressableRegisterButton} from '../components/Button';
 
-export default function TelaPrincipal(){
+export default function TelaPrincipal({navigation}){
   return(
     <MainScreen>
       <DivTopo>
@@ -33,12 +35,14 @@ export default function TelaPrincipal(){
           ></InputSearchField>
         </DivSearch>
         <DivMenu>
-
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <MenuImage source={require('../assets/drawer.png')}/>
+          </TouchableOpacity>
         </DivMenu>
       </DivTopo>
       <DivTitleScreen>
         <TitleScreenText texto="RECEITAS"/>
-        <LivroReceitas source={require('../assets/livro-receitas.png')} />
+        <IconTitle source={require('../assets/livro-receitas.png')} />
       </DivTitleScreen>
       <ScrollView>
         <DivRecipeScreen>

@@ -14,7 +14,7 @@ import {
 import {Screen, InputTextField, Logo} from '../styles/styles'
 import PressableEnterButton from '../components/Button';
 import { firebase } from '@react-native-firebase/auth';
-
+import Autenticacao from '../components/Autenticacao';
 
 
 export default function Entrar({navigation}){
@@ -69,7 +69,7 @@ export default function Entrar({navigation}){
                     <Text style={styles.backButtonText}>VOLTAR</Text>
                 </TouchableOpacity>
                 {errorLogin === true ? true : false}
-                {email === "" || senha === "" ? <TouchableOpacity style={styles.enterButton2} disabled={true} onPress={() => true}>
+                {email === "" || senha === "" ? <TouchableOpacity style={styles.enterButton2} disabled={true}>
                     <Text style={styles.enterButtonText}>LOGIN</Text>
                 </TouchableOpacity>
                 :
@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 10,
         borderRadius: 10,
-        top: 380,
+        top: 180,
         alignItems:'center',
         backgroundColor: '#00663D'
     },
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 10,
         borderRadius: 10,
-        top: 345,
+        top: 145,
         alignItems:'center',
         backgroundColor: '#FF9C33'
     },
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         height: 45,
         padding: 10,
         borderRadius: 10,
-        top: 300,
+        top: 100,
         alignItems:'center',
         backgroundColor: '#00663D'
     },
