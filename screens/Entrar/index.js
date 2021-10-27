@@ -7,14 +7,11 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform,
-  KeyboardAvoidingViewBase,
-  KeyboardAvoidingViewComponent
 } from 'react-native';
-import {Screen, InputTextField, Logo} from '../styles/styles'
-import PressableEnterButton from '../components/Button';
+import {Screen, InputTextField, Logo} from './styles'
+import PressableEnterButton from '../../components/Button';
 import { firebase } from '@react-native-firebase/auth';
-import Autenticacao from '../components/Autenticacao';
+import Autenticacao from '../../components/Autenticacao';
 
 
 export default function Entrar({navigation}){
@@ -50,7 +47,7 @@ export default function Entrar({navigation}){
     return(
         <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFF5EB'}} behavior="position">
             <Screen>
-                <Logo source={require('../assets/logo.png')} />
+                <Logo source={require('../../assets/logo.png')} />  
                 <InputTextField
                 placeholder='Digite seu e-mail'
                 type="text"
@@ -83,62 +80,6 @@ export default function Entrar({navigation}){
         </KeyboardAvoidingView>
     )
 }
-
-// export default function Entrar({navigation}){
-
-//     // state = {
-//     //     email: '',
-//     //     password: '',
-//     //     isAuthenticated: false,
-//     // };
-//     const [email, setEmail] = useState("")
-//     const [password, setPassword] = useState("")
-//     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    
-//     // login = async() => {
-//     //     //const {email, password} = this.state
-        
-
-
-//     //     try{
-//     //         const user = await firebase.auth().signInWithEmailAndPassword(email, password)
-
-//     //         setIsAuthenticated(true)
-//     //         console.log(user)
-//     //     } catch(err) {
-//     //         alert('Email/senha incorretos')
-//     //     } 
-//     // }
- 
-//     return(
-//         <Screen>
-//             <KeyboardAvoidingView>
-//                 <Logo source={require('../assets/logo.png')} />
-//                 <InputTextField 
-//                 placeholder='Digite seu e-mail'
-//                 type="text"
-//                 value={email}
-//                 onChangeText={(text) => setEmail(text)}
-//                 />
-//                 <InputTextField
-//                 secureTextEntry={true}
-//                 placeholder='Digite sua senha'
-//                 type="text"
-//                 value={password}
-//                 onChangeText={text => setPassword(text)}
-//                 />
-//                 <TouchableOpacity style={styles.enterButton} onPress={() => true}>
-//                     <Text style={styles.enterButtonText}>LOGIN</Text>
-//                 </TouchableOpacity>
-//                 <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-//                     <Text style={styles.backButtonText}>VOLTAR</Text>
-//                 </TouchableOpacity>
-//                 {/* {this.state.isAuthenticated ? () => navigation.navigate('TelaPrincipal'): null} */}
-//             </KeyboardAvoidingView>
-//         </Screen>
-        
-//     )
-// }
 
 const styles = StyleSheet.create({
     enterButton: {

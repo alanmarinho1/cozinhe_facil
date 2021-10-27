@@ -76,6 +76,12 @@ const BackButtonText = styled.Text`
     color: black;
 `;
 
+export const PressableLoginButton = ({ onPress, bgColor, title }) => (
+  <LoginButton onPress={onPress} bgColor={bgColor}>
+    <LoginButtonText>{title}</LoginButtonText>
+  </LoginButton>
+);
+
 export const PressableRegisterButton = ({ onPress, bgColor, title }) => (
   <RegisterButton onPress={onPress} bgColor={bgColor}>
     <RegisterButtonText>{title}</RegisterButtonText>

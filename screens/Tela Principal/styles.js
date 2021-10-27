@@ -10,14 +10,20 @@ export const Screen = styled.View`
   border: 1px solid red;
 `;
 
-export const MainScreen = styled.View`
+export const ViewReceitas = styled.ScrollView`
   background-color: #FFF5EB;
-
+  flex: 100%;
+  border: 3px solid red;
 `;
 
 export const DivRecipeScreen = styled.View`
   
-  
+  width: 341px;
+  height: 123px;
+  background: #FFFFFF;
+  margin: 10px 0 0 0px;
+  border: 1px solid #FFBA70;
+  border-radius: 10px;
 `;
 
 export const DivTopo = styled.View`
@@ -49,31 +55,9 @@ export const DivTitleScreen = styled.View`
   border-radius: 1px;
 `
 
-export const DivButtonRegister = styled.View`
-  
-  width: 180px;
-  height: 100px;
-  left: 180px;
-  top: 250px;
-`
-export const DivButtonBack = styled.View`
-  background-color: #FFF5EB;
-  width: 180px;
-  height: 100px;
-  left: 180px;
-  top: 100px;
-`
-
-export const DivButtonLogin = styled.View`
-
-width: 180px;
-height: 100px;
-top: 150px;
-`
 export const DivUserDrawer = styled.View`
   width: 283px;
   height: 100px;
-  /* background-color: rgba(255,255,255,0.5); */
   border-bottom-width: 1px;
   border-bottom-color: rgba(255,255,255,0.5);
 `
@@ -101,14 +85,6 @@ export const DrawerUserImage = styled.Image`
 
 `
 
-export const Logo = styled.Image`
-  
-  width: 191px;
-  height: 207px;
-  top: 40px;
-  left: 85px;
-`;
-
 export const Lupa = styled.Image`
   
   width: 25px;
@@ -133,19 +109,16 @@ export const MenuImage = styled.Image`
   top: 7px;
   left: 8px;
 `
-
-export const InputText = styled.TextInput`
-  width: 320px;
-  height: 45px;
-  background-color: #FFF;
-  align-self: stretch;
-  border-color: #EEE;
-  border-width: 1px;
-  padding: 0 0 0 20px;
-  margin-bottom: 10px;
-  top: 130px;
-  left: 20px;
+export const IconFood = styled.Image`
+  
+  position: absolute;
+  width: 105px;
+  height: 100px;
+  left: 10px;
+  top: 10px;
+  border-radius: 11px;
 `
+
 export const InputSearch = styled.TextInput`
   
   position: absolute;
@@ -174,10 +147,6 @@ export const TitleScreen = styled.Text`
 
 export const TitleScreenText = ({texto}) => (
   <TitleScreen>{texto}</TitleScreen>
-);
-export const InputTextField = ({placeholder, secureTextEntry, value, onChangeText}) => (
-    <InputText placeholder={placeholder} place secureTextEntry={secureTextEntry} value={value} onChangeText={onChangeText}></InputText>
-  
 );
 
 export const InputSearchField = ({placeholder, style, value, onChangeText}) => (

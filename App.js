@@ -3,10 +3,10 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
-import Login from './screens/Login'
+import Login from './screens/Login/'
 import Entrar from './screens/Entrar'
 import Registrar from './screens/Registrar'
-import TelaPrincipal from './screens/TelaPrincipal'
+import TelaPrincipal from './screens/Tela Principal'
 import { 
   InputSearchField,  
   DivUserDrawer, DrawerUserNoImage, DrawerUserImage, DivUserData } from './styles/styles'
@@ -17,7 +17,7 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TelaPrincipal" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
@@ -36,7 +36,7 @@ const CustomDrawer = (props) => {
       </DivUserData>
       
       <DrawerUserNoImage source={require('./assets/no-photo2.png')} />
-      {/* <DrawerUserImage source={require('./assets/no-photo2.png')} /> */}
+      
     </DivUserDrawer>
     <DrawerItemList {...props}/>
   </DrawerContentScrollView>

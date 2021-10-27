@@ -7,8 +7,8 @@ import {
   KeyboardAvoidingView,
   Alert
 } from 'react-native';
-import {Screen, InputTextField, Logo, DivButtonBack} from '../styles/styles'
-import {PressableBackButton} from '../components/Button';
+import {Screen, InputTextField, Logo, DivButtonBack} from './styles'
+import {PressableBackButton} from '../../components/Button';
 import { firebase } from '@react-native-firebase/auth';
 
 
@@ -49,7 +49,7 @@ export default function Registrar({navigation}){
         return(
             <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFF5EB'}} behavior="position">
                 <Screen>
-                    <Logo source={require('../assets/logo.png')} />
+                    <Logo source={require('../../assets/logo.png')} />
                     <InputTextField 
                     placeholder='Digite seu e-mail'
                     type="text"
