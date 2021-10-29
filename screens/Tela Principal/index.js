@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  ActivityIndicator,
 } from 'react-native';
 import {
   ViewReceitas, 
@@ -24,18 +25,51 @@ import {PressableMenuButton, PressableRegisterButton} from '../../components/But
 export default function TelaPrincipal({navigation}){
   
   const [pesquisa, setPesquisa] = useState("")
+  const [carregando, setCarregando] = useState(true)
+  const [dados, setDados] = useState({})
 
+  // function renderizandoItens(item){
+  //   <>
+  //   <IconFood source={require('../../assets/macarronada.jpg')} />
+  //   <Text>{item.nome}</Text>
+  //   </>
 
+  // }
+  
   function AcessoReceita(){
     return(
+
       <DivRecipeScreen>
-        <IconFood source={require('../../assets/macarronada.jpg')}/>
+        <IconFood source={require('../../assets/macarronada.jpg')} />
       </DivRecipeScreen>
+    //   <DivRecipeScreen>
+    //   {
+    //     carregando ? <ActivityIndicator /> : (
+    //       <FlatList 
+    //         data={dados}
+    //         keyExtractor={({_id}, index) => _id}
+    //         renderItem={({item}) => (
+    //           <><IconFood source={require('../../assets/macarronada.jpg')} />
+    //           <Text>{item.nome}</Text></>
+    //         )}
+    //       />
+    //     )
+    //   }
+    // </DivRecipeScreen>
+
     )
   }
 
-  useEffect(() => {
-    AcessoReceita()
+      
+
+  useEffect(
+    () => {
+      // fetch('https://raw.githubusercontent.com/adrianosferreira/afrodite.json/master/afrodite.json')
+      //   .then((resp) => resp.json())
+      //   .then((json) => setDados(json))
+      //   .catch(() => (alert('Erro ao carregar')))
+      //   .finally(() => setCarregando(false))
+    
     
   }, []);
   

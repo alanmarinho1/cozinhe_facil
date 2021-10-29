@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
-import auth from '@react-native-firebase/auth';
+import {firebase} from '@react-native-firebase/auth';
 
 export default function Autenticacao() {
   
@@ -16,23 +16,22 @@ export default function Autenticacao() {
 
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    console.log(user.email)
     return subscriber; // unsubscribe on unmount
   }, []);
 
   if (initializing) return null;
+}
 
-  if (!user) {
-    return (
-      <View>
-        <Text>Login</Text>
-      </View>
-    );
-  }
-
-  return (
-    <View>
-      <Text>Welcome {user.email}</Text>
-    </View>
-  );
+export function logoutFirebase({navigation}){
+  return(
+    firebase.auth()
+          .signOut()
+          .then(() => {
+            console.log('Usuario desconectado')
+            navigation.navigate('Entrar')
+          })
+  )
+  
 }
 

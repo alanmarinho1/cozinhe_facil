@@ -20,6 +20,9 @@ export default function Entrar({navigation}){
     const [senha, setSenha] = useState("")
     const [errorLogin, setErrorLogin] = useState("")
 
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
+
     const loginFirebase = () => {
         firebase.auth()
             .signInWithEmailAndPassword(email, senha)
@@ -41,11 +44,27 @@ export default function Entrar({navigation}){
             });
     } 
 
+    // function onAuthStateChanged(user) {
+    //     setUser(user);
+    //     if (initializing) setInitializing(false);
+    //   }
+
     useEffect(() => {
 
+    const subscriber = firebase.auth().onAuthStateChanged((user) => {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    });
+    return subscriber;
+
     }, []);
+
+    if (initializing) return null;
+
     return(
+        
         <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFF5EB'}} behavior="position">
+            
             <Screen>
                 <Logo source={require('../../assets/logo.png')} />  
                 <InputTextField
