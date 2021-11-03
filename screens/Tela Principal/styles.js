@@ -10,7 +10,7 @@ export const Screen = styled.View`
   border: 1px solid red;
 `;
 
-export const ViewReceitas = styled.ScrollView`
+export const ViewReceitas = styled.View`
   background-color: #FFF5EB;
   flex: 100%;
   border: 3px solid red;
@@ -142,6 +142,35 @@ export const TitleScreen = styled.Text`
   font-weight: normal;
   font-size: 18px;
   line-height: 21px;
+  color: #04251D;
+`
+
+export const RecipeName = styled.Text`
+  width: 165px;
+  height: 49px;
+  left: 140px;
+  top: 40px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 25px;
+  line-height: 23px;
+  text-align: center;
+  color: #04251D;
+`
+
+export const RecipeType = styled.Text`
+  position: absolute;
+  width: 200px;
+  height: 20px;
+  left: 130px;
+  top: 5px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  border: 1px;
+  font-size: 12px;
+  text-align: center;
   color: #04251D;
 `
 

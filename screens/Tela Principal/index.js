@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import {
   ViewReceitas, 
@@ -19,43 +20,51 @@ import {
   TitleScreenText,
   IconTitle,
   MenuImage,
-  IconFood } from './styles'
+  IconFood,
+  RecipeName,
+  RecipeType } from './styles'
 import {PressableMenuButton, PressableRegisterButton} from '../../components/Button';
+import database from '@react-native-firebase/database'
 
 export default function TelaPrincipal({navigation}){
   
   const [pesquisa, setPesquisa] = useState("")
   const [carregando, setCarregando] = useState(true)
   const [dados, setDados] = useState({})
+  const [value, setValue] = useState([])
 
-  // function renderizandoItens(item){
-  //   <>
-  //   <IconFood source={require('../../assets/macarronada.jpg')} />
-  //   <Text>{item.nome}</Text>
-  //   </>
-
-  // }
+  function readFunction(){
+    database().ref("/0/_id").on('value', snapshot => {
+      const main=[];
+      snapshot.forEach((child) => {
+        console.log(child.val());
+        main.push({
+          key:child.val()
+        })
+      })
+      setValue(main)
+    });
+  }
   
   function AcessoReceita(){
     return(
 
-      <DivRecipeScreen>
-        <IconFood source={require('../../assets/macarronada.jpg')} />
-      </DivRecipeScreen>
-    //   <DivRecipeScreen>
-    //   {
-    //     carregando ? <ActivityIndicator /> : (
-    //       <FlatList 
-    //         data={dados}
-    //         keyExtractor={({_id}, index) => _id}
-    //         renderItem={({item}) => (
-    //           <><IconFood source={require('../../assets/macarronada.jpg')} />
-    //           <Text>{item.nome}</Text></>
-    //         )}
-    //       />
-    //     )
-    //   }
-    // </DivRecipeScreen>
+      // <DivRecipeScreen>
+      //   <IconFood source={require('../../assets/macarronada.jpg')} />
+      //   <RecipeName>Nome da Receita</RecipeName>
+      //   <RecipeType>Tipo da receita</RecipeType>
+      // </DivRecipeScreen>
+          <FlatList 
+            data={value}
+            keyExtractor={(item) => item.key}
+            renderItem={({item}) => (
+              <DivRecipeScreen>
+                <IconFood source={require('../../assets/macarronada.jpg')} />
+                <RecipeName>{item.key}</RecipeName>
+                <RecipeType>Tipo da receita</RecipeType>
+              </DivRecipeScreen>
+            )}
+          />
 
     )
   }
@@ -69,7 +78,7 @@ export default function TelaPrincipal({navigation}){
       //   .then((json) => setDados(json))
       //   .catch(() => (alert('Erro ao carregar')))
       //   .finally(() => setCarregando(false))
-    
+    readFunction()
     
   }, []);
   
