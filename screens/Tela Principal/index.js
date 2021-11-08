@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   FlatList,
+  StatusBar,
 } from 'react-native';
 import {
   ViewReceitas, 
@@ -34,59 +35,75 @@ export default function TelaPrincipal({navigation}){
   const [value, setValue] = useState([])
 
   function readFunction(){
-    database().ref("/0/_id").on('value', snapshot => {
+
+    database().ref("/").on('value', snapshot => {
       const main=[];
       snapshot.forEach((child) => {
-        console.log(child.val());
         main.push({
           key:child.val()
         })
       })
       setValue(main)
+      console.log(main)
+      return () => database().ref('/').off('value', onValueChange);
     });
   }
   
   function AcessoReceita(){
     return(
-
-      // <DivRecipeScreen>
-      //   <IconFood source={require('../../assets/macarronada.jpg')} />
-      //   <RecipeName>Nome da Receita</RecipeName>
-      //   <RecipeType>Tipo da receita</RecipeType>
-      // </DivRecipeScreen>
-          <FlatList 
-            data={value}
-            keyExtractor={(item) => item.key}
-            renderItem={({item}) => (
-              <DivRecipeScreen>
-                <IconFood source={require('../../assets/macarronada.jpg')} />
-                <RecipeName>{item.key}</RecipeName>
-                <RecipeType>Tipo da receita</RecipeType>
-              </DivRecipeScreen>
-            )}
-          />
-
+      <FlatList 
+        data={value}
+        keyExtractor={(item) => item._id}
+        renderItem={({item}) => <ListItem data={item} />}
+      />
     )
   }
 
+  const ListItem = ({data}) => {
+    return(
+      <DivRecipeScreen>
+        <IconFood source={require('../../assets/macarronada.jpg')} />
+        <RecipeName>{data.key.nome}</RecipeName>
+        <RecipeType>Tipo da receita</RecipeType>
+      </DivRecipeScreen>
+    )
+  }
       
 
   useEffect(
     () => {
+      
+      if(pesquisa === ''){
+        setValue(pesquisa)
+        readFunction()
+      }else{
+        setValue(
+          value.filter(item => {
+            if (item.key.nome.toLowerCase().indexOf(pesquisa.toLowerCase()) > -1) {
+              console.log('ta procurando')
+              return true
+            } else {
+              console.log('deu em nada')
+              return false
+            }
+          })
+        )
+      }
       // fetch('https://raw.githubusercontent.com/adrianosferreira/afrodite.json/master/afrodite.json')
       //   .then((resp) => resp.json())
       //   .then((json) => setDados(json))
       //   .catch(() => (alert('Erro ao carregar')))
       //   .finally(() => setCarregando(false))
-    readFunction()
     
-  }, []);
+    
+  }, [pesquisa]);
   
   return(
     <View>
+      <StatusBar backgroundColor= '#FF9C33'/>
       <DivTopo>
         <DivSearch>
-          <Lupa source={require('../../assets/lupa.png')} />
+          <Lupa source={require('../../assets/lupa.png')}/>
           <InputSearchField
           placeholder='Pesquisar receitas'
           style={{height:35}}

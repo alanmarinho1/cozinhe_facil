@@ -92,7 +92,6 @@ export const Lupa = styled.Image`
   position: absolute;
   right: 10px;
   top: 15px;
-  z-index: 1px;
 `;
 
 export const IconTitle = styled.Image`
