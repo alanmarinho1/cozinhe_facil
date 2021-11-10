@@ -145,14 +145,15 @@ export const TitleScreen = styled.Text`
 `
 
 export const RecipeName = styled.Text`
-  width: 165px;
-  height: 49px;
+  width: 170px;
+  height: 70px;
   left: 140px;
   top: 40px;
+  border: 1px solid red;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 23px;
   text-align: center;
   color: #04251D;
