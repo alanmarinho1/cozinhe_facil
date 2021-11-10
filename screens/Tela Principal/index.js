@@ -72,10 +72,9 @@ export default function TelaPrincipal({navigation}){
 
   useEffect(
     () => {
-      
+      readFunction()
       if(pesquisa === ''){
         setValue(pesquisa)
-        readFunction()
       }else{
         setValue(
           value.filter(item => {
@@ -94,7 +93,7 @@ export default function TelaPrincipal({navigation}){
       //   .then((json) => setDados(json))
       //   .catch(() => (alert('Erro ao carregar')))
       //   .finally(() => setCarregando(false))
-    
+      
     
   }, [pesquisa]);
   
@@ -110,7 +109,7 @@ export default function TelaPrincipal({navigation}){
           type="text"
           onChangeText={(text) => setPesquisa(text)}
           value={pesquisa}
-          ></InputSearchField>
+          >{console.log(pesquisa)}</InputSearchField>
         </DivSearch>
         <DivMenu>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
