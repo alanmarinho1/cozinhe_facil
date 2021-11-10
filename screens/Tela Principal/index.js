@@ -1,8 +1,6 @@
 import React, { Component, useEffect, useState } from 'react';
 import {
   Image,
-  ScrollView,
-  Text,
   View,
   TouchableOpacity,
   ActivityIndicator,
@@ -24,7 +22,6 @@ import {
   IconFood,
   RecipeName,
   RecipeType } from './styles'
-import {PressableMenuButton, PressableRegisterButton} from '../../components/Button';
 import database from '@react-native-firebase/database'
 
 export default function TelaPrincipal({navigation}){
@@ -61,10 +58,13 @@ export default function TelaPrincipal({navigation}){
 
   const ListItem = ({data}) => {
     return(
+
       <DivRecipeScreen>
-        <IconFood source={require('../../assets/macarronada.jpg')} />
-        <RecipeName>{data.key.nome}</RecipeName>
-        <RecipeType>Tipo da receita</RecipeType>
+        <TouchableOpacity style={{height: '100%', width: '100%', borderColor: 'green', borderWidth: 2}} onPress={() => console.log('xablau')}>
+          <IconFood source={require('../../assets/macarronada.jpg')} />
+          <RecipeName>{data.key.nome}</RecipeName>
+          <RecipeType>Tipo da receita</RecipeType>
+        </TouchableOpacity>
       </DivRecipeScreen>
     )
   }
@@ -88,12 +88,6 @@ export default function TelaPrincipal({navigation}){
           })
         )
       }
-      // fetch('https://raw.githubusercontent.com/adrianosferreira/afrodite.json/master/afrodite.json')
-      //   .then((resp) => resp.json())
-      //   .then((json) => setDados(json))
-      //   .catch(() => (alert('Erro ao carregar')))
-      //   .finally(() => setCarregando(false))
-      
     
   }, [pesquisa]);
   

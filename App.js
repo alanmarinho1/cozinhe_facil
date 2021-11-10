@@ -7,10 +7,12 @@ import Login from './screens/Login/'
 import Entrar from './screens/Entrar'
 import Registrar from './screens/Registrar'
 import TelaPrincipal from './screens/Tela Principal'
+import Receita from './screens/Receita'
 import { firebase } from '@react-native-firebase/auth';
 import { 
   InputSearchField,  
   DivUserDrawer, DrawerUserNoImage, DrawerUserImage, DivUserData } from './styles/styles'
+
 
 
 const Stack = createNativeStackNavigator();
@@ -31,11 +33,12 @@ function logoutFirebase(){
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TelaPrincipal" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Receita" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
         <Stack.Screen name="TelaPrincipal" component={DrawerScreens} />
+        <Stack.Screen name="Receita" component={Receita} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -56,6 +59,7 @@ const CustomDrawer = ({ navigation }) => {
         .signOut()
         .then(() => {
           alert('Usuario desconectado')
+          logoutFirebase()
         })
         navigation.navigate('Entrar') 
         }}
