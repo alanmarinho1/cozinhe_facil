@@ -7,13 +7,12 @@ import { Component } from "react";
 export const Screen = styled.View`
   background-color: #FFF5EB;
   flex: 1;
-  border: 1px solid red;
 `;
 
 export const ViewReceitas = styled.View`
   background-color: #FFF5EB;
   flex: 100%;
-  border: 3px solid red;
+
 `;
 
 export const DivRecipeScreen = styled.View`
@@ -21,7 +20,7 @@ export const DivRecipeScreen = styled.View`
   width: 341px;
   height: 123px;
   background: #FFFFFF;
-  margin: 10px 0 0 0px;
+  margin: 10px 0 0 10px;
   border: 1px solid #FFBA70;
   border-radius: 10px;
 `;
@@ -149,7 +148,7 @@ export const RecipeName = styled.Text`
   height: 70px;
   left: 140px;
   top: 40px;
-  border: 1px solid red;
+  
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -168,7 +167,6 @@ export const RecipeType = styled.Text`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  border: 1px;
   font-size: 12px;
   text-align: center;
   color: #04251D;

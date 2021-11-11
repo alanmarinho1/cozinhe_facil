@@ -11,7 +11,7 @@ export const ImageTopo = styled.Image`
 `;
 
 export const DivIngredients = styled.View`
-    position: absolute;
+
     width: 340px;
     height: 400px;
     left: 10px;
@@ -64,23 +64,25 @@ export const Ing = styled.Text`
 
 export const DivItens = styled.View`
 
-    flex: auto;
+    
     position: absolute;
-    width: 299px;
+    width: 300px;
     height: 220px;
     left: 20px;
     top: 100px;
-    border: 1px solid red;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
+    flex: 100%;
+    align-items: center;
+    color: #04251D;
+
+`
+export const ListIng = styled.Text`
+
+    width: auto;
+    height: auto;
+    padding-bottom: 10px;
     font-size: 10px;
     line-height: 12px;
-    display: flex;
-    align-items: center;
     letter-spacing: 2.16667px;
-
-    color: #04251D;
 
 `
 
@@ -110,6 +112,8 @@ const InitRecipeText = styled.Text`
 
     color: #FFFFFF;
 `;
+
+
 
 export const PressableInitRecipeButton = ({ onPress, bgColor, title }) => (
     <InitRecipeButton onPress={onPress} bgColor={bgColor}>

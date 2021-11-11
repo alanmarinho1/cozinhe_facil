@@ -60,7 +60,10 @@ export default function TelaPrincipal({navigation}){
     return(
 
       <DivRecipeScreen>
-        <TouchableOpacity style={{height: '100%', width: '100%', borderColor: 'green', borderWidth: 2}} onPress={() => navigation.navigate('Receita', data.key)}>
+        {/* {console.log(data.key.secao[0].conteudo)} */}
+        <TouchableOpacity
+         style={{height: '100%', width: '100%'}}
+         onPress={() => navigation.navigate('Receita', data.key)}>
           <IconFood source={require('../../assets/macarronada.jpg')} />
           <RecipeName>{data.key.nome}</RecipeName>
           <RecipeType>Tipo da receita</RecipeType>
@@ -103,7 +106,7 @@ export default function TelaPrincipal({navigation}){
           type="text"
           onChangeText={(text) => setPesquisa(text)}
           value={pesquisa}
-          >{console.log(pesquisa)}</InputSearchField>
+          />
         </DivSearch>
         <DivMenu>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>

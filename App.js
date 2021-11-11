@@ -8,6 +8,7 @@ import Entrar from './screens/Entrar'
 import Registrar from './screens/Registrar'
 import TelaPrincipal from './screens/Tela Principal'
 import Receita from './screens/Receita'
+import Preparo from './screens/Preparo';
 import { firebase } from '@react-native-firebase/auth';
 import { 
   InputSearchField,  
@@ -26,19 +27,18 @@ function logoutFirebase(){
             console.log('Usuario desconectado')
           })
   );
-  
 }
-
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TelaPrincipal" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Preparo" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
         <Stack.Screen name="TelaPrincipal" component={DrawerScreens} />
         <Stack.Screen name="Receita" component={Receita} />
+        <Stack.Screen name="Preparo" component={Preparo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

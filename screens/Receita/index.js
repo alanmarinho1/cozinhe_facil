@@ -4,31 +4,33 @@ import {Text,
   StatusBar,
   FlatList,
 } from 'react-native';
-import {ImageTopo, DivIngredients, RecipeName, Ing, DivItens, PressableInitRecipeButton} from './styles'
-import database from '@react-native-firebase/database'
+import {ImageTopo, DivIngredients, RecipeName, Ing, DivItens, PressableInitRecipeButton, ListIng} from './styles'
+
 
 export default function Receita({route, navigation}){
-    const {nome, secao, _id, conteudo} = route.params
+    const {nome, secao, _id} = route.params
     return(
         <View style={{backgroundColor: '#FFF5EB'}}>
             <StatusBar backgroundColor= 'transparent'/>
             <ImageTopo source={require('../../assets/macarronada.jpg')}/>
             <DivIngredients>
-                <RecipeName>Nome da receita</RecipeName>
-                <Ing>Ingredientes</Ing>
+                <RecipeName>{nome}</RecipeName>
+                <Ing>{secao[0].nome}</Ing>
 
-                <DivItens>
-                   {/* {console.log(JSON.stringify(secao[0].conteudo))} */}
+                <DivItens contentContainerStyle={{alignItems: 'center'}}>
                    <FlatList 
-                        data={secao}
+                        data={secao[0].conteudo}
                         keyExtractor={(item) => item}
+                        overScrollMode= 'auto'
                         renderItem={({item}) => {
-                            {console.log(item)}
+                            return(
+                                <ListIng>{item}</ListIng>
+                            )
                         }}
                     />
                 </DivItens>
                 <PressableInitRecipeButton
-                 onPress={() => console.log('Ir para receita')}
+                 onPress={() => navigation.navigate('Preparo')}
                  title='INICIAR RECEITA'
                  bgColor='#00663D'/>
 
