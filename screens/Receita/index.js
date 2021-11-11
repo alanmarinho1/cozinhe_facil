@@ -2,11 +2,13 @@ import React from 'react';
 import {Text,
   View,
   StatusBar,
+  FlatList,
 } from 'react-native';
 import {ImageTopo, DivIngredients, RecipeName, Ing, DivItens, PressableInitRecipeButton} from './styles'
 import database from '@react-native-firebase/database'
 
-export default function Receita(){
+export default function Receita({route, navigation}){
+    const {nome, secao, _id, conteudo} = route.params
     return(
         <View style={{backgroundColor: '#FFF5EB'}}>
             <StatusBar backgroundColor= 'transparent'/>
@@ -16,8 +18,14 @@ export default function Receita(){
                 <Ing>Ingredientes</Ing>
 
                 <DivItens>
-                    <Text>1 pêra 1 banana prata 1 caixa de kiwi 1 maçã 1 caixa de morango 1 cacho de uva verde Um pouco de chantilly Um pouco de suco de pêssego ou laranja Del Vale Um pouco de açúcar
-</Text>
+                   {/* {console.log(JSON.stringify(secao[0].conteudo))} */}
+                   <FlatList 
+                        data={secao}
+                        keyExtractor={(item) => item}
+                        renderItem={({item}) => {
+                            {console.log(item)}
+                        }}
+                    />
                 </DivItens>
                 <PressableInitRecipeButton
                  onPress={() => console.log('Ir para receita')}

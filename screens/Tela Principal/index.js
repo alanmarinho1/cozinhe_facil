@@ -60,7 +60,7 @@ export default function TelaPrincipal({navigation}){
     return(
 
       <DivRecipeScreen>
-        <TouchableOpacity style={{height: '100%', width: '100%', borderColor: 'green', borderWidth: 2}} onPress={() => console.log('xablau')}>
+        <TouchableOpacity style={{height: '100%', width: '100%', borderColor: 'green', borderWidth: 2}} onPress={() => navigation.navigate('Receita', data.key)}>
           <IconFood source={require('../../assets/macarronada.jpg')} />
           <RecipeName>{data.key.nome}</RecipeName>
           <RecipeType>Tipo da receita</RecipeType>

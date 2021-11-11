@@ -33,7 +33,7 @@ function logoutFirebase(){
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Receita" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="TelaPrincipal" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
