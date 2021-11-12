@@ -30,7 +30,7 @@ export default function Receita({route, navigation}){
                     />
                 </DivItens>
                 <PressableInitRecipeButton
-                 onPress={() => navigation.navigate('Preparo')}
+                 onPress={() => navigation.navigate('Preparo', secao[1])}
                  title='INICIAR RECEITA'
                  bgColor='#00663D'/>
 

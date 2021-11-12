@@ -96,7 +96,7 @@ export default function TelaPrincipal({navigation}){
   
   return(
     <View>
-      <StatusBar backgroundColor= '#FF9C33'/>
+      <StatusBar backgroundColor= 'transparent' translucent={true}/>
       <DivTopo>
         <DivSearch>
           <Lupa source={require('../../assets/lupa.png')}/>
