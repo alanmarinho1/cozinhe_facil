@@ -39,6 +39,7 @@ export default function Preparo({route, navigation}){
                                             disabled={false}
                                             value={isSelected}
                                             onValueChange={setSelection}
+                                            
                                         />
                                     </DivCheck>
                                 )
