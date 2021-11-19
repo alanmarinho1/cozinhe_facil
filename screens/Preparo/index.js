@@ -7,7 +7,7 @@ import {Text,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import {ImageTopo, DivTitle, Title, Icon, DivContainerCheck, PressableEndRecipeButton, PressableCancelRecipeButton, DivCheck, StepText} from './styles'
-import { abs } from 'react-native-reanimated';
+import {FlatlistMultipleChoose} from 'react-native-flatlist-multiple-choose'
 
 
 export default function Preparo({route, navigation}){
@@ -26,7 +26,7 @@ export default function Preparo({route, navigation}){
                 <Icon source={require('../../assets/Modo-de-Preparo2.png')} />
             </DivTitle>
             <DivContainerCheck>
-                    <FlatList 
+                    {/* <FlatList 
                             data={conteudo}
                             keyExtractor={(item) => item}
                             overScrollMode= 'auto'
@@ -44,7 +44,20 @@ export default function Preparo({route, navigation}){
                                     </DivCheck>
                                 )
                             }}
-                        />
+                        /> */}
+                    <FlatlistMultipleChoose itemStyle={styles.checkbox}  
+                    extraData={(item) => item} 
+                    data={conteudo}
+                    onChangeDatasChoosed={() => setSelection(true)} 
+                    customItem={({item}) => {
+                        return(
+                            <DivCheck>
+                                <StepText>{item}</StepText>
+                            </DivCheck>
+                        )
+                    }} 
+                    />
+                    
             </DivContainerCheck>
             <PressableEndRecipeButton 
             onPress={() => alert('Finalizou a receita')}
