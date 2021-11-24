@@ -15,7 +15,7 @@ export default function Preparo({route, navigation}){
     const [isSelected, setSelection] = useState(false)
     const [listaPreparo, setListaPreparo] = useState([])
     const [, forceUpdate] = useReducer(x => x + 1, 0);
-    const {nome, conteudo, checked} = route.params
+    const {nome, conteudo} = route.params
 
 
     function carregaLista(conteudo){
@@ -59,14 +59,14 @@ export default function Preparo({route, navigation}){
                                         <CheckBox
                                             style={styles.checkbox}
                                             value={item.checked}
-                                            onValueChange={(check) => {
+                                            onValueChange={() => {
                                                 console.log(item)
+                                                forceUpdate()
                                                 if(item.checked == true){
-                                                    item.checked = !check
-                                                    forceUpdate()
-                                                }else{
-                                                    item.checked = check
+                                                    item.checked = false
                                                     
+                                                }else{
+                                                    item.checked = true
                                                 }
                                                 
                                                 // item.checked ? item.checked = false : item.checked = true
