@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, useReducer} from 'react';
 import {Text,
   View,
   StatusBar,
@@ -8,12 +8,32 @@ import {Text,
 import CheckBox from '@react-native-community/checkbox';
 import {ImageTopo, DivTitle, Title, Icon, DivContainerCheck, PressableEndRecipeButton, PressableCancelRecipeButton, DivCheck, StepText} from './styles'
 import {FlatlistMultipleChoose} from 'react-native-flatlist-multiple-choose'
+import database from '@react-native-firebase/database'
 
 
 export default function Preparo({route, navigation}){
     const [isSelected, setSelection] = useState(false)
-    const {nome, conteudo} = route.params
+    const [listaPreparo, setListaPreparo] = useState([])
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
+    const {nome, conteudo, checked} = route.params
 
+
+    function carregaLista(conteudo){
+        const lista = []
+
+        for(let i = 0; i < conteudo.length; i = i + 1){
+            lista.push({"descrição": conteudo[i], "checked": false})
+        }
+        // conteudo.forEach(() => {
+        //     lista.push({"descrição": conteudo, i, "checked": false})
+        // });
+
+        setListaPreparo(lista)
+    }
+
+    useEffect(() => {
+        carregaLista(conteudo)
+    }, []);
     return(
 
         <View style={{backgroundColor: '#FFF5EB', flex: 1}}>
@@ -26,26 +46,38 @@ export default function Preparo({route, navigation}){
                 <Icon source={require('../../assets/Modo-de-Preparo2.png')} />
             </DivTitle>
             <DivContainerCheck>
-                    {/* <FlatList 
-                            data={conteudo}
+                    <FlatList 
+                            data={listaPreparo}
                             keyExtractor={(item) => item}
                             overScrollMode= 'auto'
                             renderItem={({item}) => {
                                 return(
+
                                     <DivCheck>
-                                        <StepText>{item}</StepText>
+                                        
+                                        <StepText>{item.descrição}</StepText>
                                         <CheckBox
                                             style={styles.checkbox}
-                                            disabled={false}
-                                            value={isSelected}
-                                            onValueChange={setSelection}
+                                            value={item.checked}
+                                            onValueChange={(check) => {
+                                                console.log(item)
+                                                if(item.checked == true){
+                                                    item.checked = !check
+                                                    forceUpdate()
+                                                }else{
+                                                    item.checked = check
+                                                    
+                                                }
+                                                
+                                                // item.checked ? item.checked = false : item.checked = true
+                                            }}
                                             
                                         />
                                     </DivCheck>
                                 )
                             }}
-                        /> */}
-                    <FlatlistMultipleChoose itemStyle={styles.checkbox}  
+                        />
+                    {/* <FlatlistMultipleChoose itemStyle={styles.checkbox}  
                     extraData={(item) => item} 
                     data={conteudo}
                     onChangeDatasChoosed={() => setSelection(true)} 
@@ -56,7 +88,7 @@ export default function Preparo({route, navigation}){
                             </DivCheck>
                         )
                     }} 
-                    />
+                    /> */}
                     
             </DivContainerCheck>
             <PressableEndRecipeButton 
