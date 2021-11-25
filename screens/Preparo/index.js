@@ -13,6 +13,7 @@ import database from '@react-native-firebase/database'
 
 export default function Preparo({route, navigation}){
     const [isSelected, setSelection] = useState(false)
+    const [retornoBool, setRetornoBool] = useState(false)
     const [listaPreparo, setListaPreparo] = useState([])
     const [, forceUpdate] = useReducer(x => x + 1, 0);
     const {nome, conteudo} = route.params
@@ -60,14 +61,33 @@ export default function Preparo({route, navigation}){
                                             style={styles.checkbox}
                                             value={item.checked}
                                             onValueChange={() => {
-                                                console.log(item)
+
                                                 forceUpdate()
+                                                
+                                                console.log('retorno elemento antes de alterar: ' + item.checked)
+                                                
+                                                
+                                                
                                                 if(item.checked == true){
                                                     item.checked = false
                                                     
                                                 }else{
                                                     item.checked = true
+                                                    
                                                 }
+                                                xupeta = listaPreparo.every(elemento => elemento.checked === true)
+                                                setRetornoBool(xupeta);
+                                                console.log('todos os elementos são true? ' + xupeta)
+                                                console.log('retorno elemento depois de alterar: ' + item.checked)
+                                                console.log(retornoBool)
+                                                console.log(listaPreparo)
+                                                
+                                                
+                                                
+                                                if(retornoBool){
+                                                    console.log("retornobool true")
+                                                }
+                                                
                                                 
                                                 // item.checked ? item.checked = false : item.checked = true
                                             }}
@@ -91,11 +111,20 @@ export default function Preparo({route, navigation}){
                     /> */}
                     
             </DivContainerCheck>
+            {console.log('botão ' + retornoBool)}
+            
+            {retornoBool == false ? <PressableEndRecipeButton 
+            // onPress={() => alert('Finalizou a receita')}
+            title='FINALIZAR RECEITA'
+            bgColor='#E0E0E0'
+            disabled={true}
+            />
+            :
             <PressableEndRecipeButton 
             onPress={() => alert('Finalizou a receita')}
             title='FINALIZAR RECEITA'
             bgColor='#00663D'
-            />
+            />}
             <PressableCancelRecipeButton 
             onPress={() => navigation.goBack()}
             title='CANCELAR RECEITA'

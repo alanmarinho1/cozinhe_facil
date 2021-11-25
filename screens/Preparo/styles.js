@@ -134,8 +134,8 @@ const CancelRecipeText = styled.Text`
     color: #FFFFFF;
 `;
 
-export const PressableEndRecipeButton = ({ onPress, bgColor, title }) => (
-    <EndRecipeButton onPress={onPress} bgColor={bgColor}>
+export const PressableEndRecipeButton = ({ onPress, bgColor, title, disabled }) => (
+    <EndRecipeButton onPress={onPress} bgColor={bgColor} disabled={disabled}>
       <EndRecipeText>{title}</EndRecipeText>
     </EndRecipeButton>
   );
