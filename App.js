@@ -10,9 +10,11 @@ import TelaPrincipal from './screens/Tela Principal'
 import Receita from './screens/Receita'
 import Preparo from './screens/Preparo';
 import { firebase } from '@react-native-firebase/auth';
+import Avaliacao from './screens/Avaliacao';
 import { 
   InputSearchField,  
   DivUserDrawer, DrawerUserNoImage, DrawerUserImage, DivUserData } from './styles/styles'
+
 
 
 
@@ -39,6 +41,7 @@ export default function App() {
         <Stack.Screen name="TelaPrincipal" component={DrawerScreens} />
         <Stack.Screen name="Receita" component={Receita} />
         <Stack.Screen name="Preparo" component={Preparo} />
+        <Stack.Screen name="Avaliacao" component={Avaliacao} />
       </Stack.Navigator>
     </NavigationContainer>
   );
