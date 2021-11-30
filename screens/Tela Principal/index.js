@@ -42,7 +42,8 @@ export default function TelaPrincipal({navigation}){
       })
       setValue(main)
       console.log(main)
-      return () => database().ref('/').off('value', onValueChange);
+      
+      // return () => database().ref('/').off('value', onValueChange);
     });
   }
   
@@ -50,20 +51,20 @@ export default function TelaPrincipal({navigation}){
     return(
       <FlatList 
         data={value}
-        keyExtractor={(item) => item._id}
-        renderItem={({item}) => <ListItem data={item} />}
+        keyExtractor={(item) => item.index}
+        renderItem={({item, index}) => <ListItem data={item} indice={index} />}
       />
     )
   }
 
-  const ListItem = ({data}) => {
+  const ListItem = ({data, indice}) => {
     return(
 
       <DivRecipeScreen>
-        {/* {console.log(data.key.secao[0].conteudo)} */}
+
         <TouchableOpacity
          style={{height: '100%', width: '100%'}}
-         onPress={() => navigation.navigate('Receita', data.key)}>
+         onPress={() => navigation.navigate('Receita', {key: data.key, indice: indice})}>
           <IconFood source={require('../../assets/macarronada.jpg')} />
           <RecipeName>{data.key.nome}</RecipeName>
           <RecipeType>Tipo da receita</RecipeType>
@@ -76,6 +77,7 @@ export default function TelaPrincipal({navigation}){
   useEffect(
     () => {
       readFunction()
+      
       if(pesquisa === ''){
         setValue(pesquisa)
       }else{

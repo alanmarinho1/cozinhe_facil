@@ -15,4 +15,4 @@ import {name as appName} from './app.json';
 import { NavigationContainer } from '@react-navigation/native';
 
 
-AppRegistry.registerComponent(appName, () => Avaliacao);
+AppRegistry.registerComponent(appName, () => App);
