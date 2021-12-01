@@ -46,7 +46,7 @@ export default function Preparo({route, navigation}){
         <View style={{ backgroundColor: '#FFF5EB', flex: 1 }}>
             <StatusBar backgroundColor='transparent' translucent={true} />
             <View>
-                <ImageTopo source={require('../../assets/macarronada.jpg')} />
+                <ImageTopo source={{uri: preparo.imagem}} />
             </View>
             <DivTitle>
                 <Title>{preparo.nome}</Title>

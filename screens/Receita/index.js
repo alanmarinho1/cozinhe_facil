@@ -12,10 +12,12 @@ export default function Receita({route, navigation}){
     return(
         <View style={{backgroundColor: '#FFF5EB'}}>
             <StatusBar backgroundColor= 'transparent'/>
-            <ImageTopo source={require('../../assets/macarronada.jpg')}/>
+            <ImageTopo source={{
+          uri: key.imagem,
+        }}/>
             <DivIngredients>
 
-                <RecipeName>{key.nome}{console.log(indice)}</RecipeName>
+                <RecipeName>{key.nome}</RecipeName>
                 <Ing>{key.secao[0].nome}</Ing>
 
                 <DivItens contentContainerStyle={{alignItems: 'center'}}>
@@ -31,7 +33,7 @@ export default function Receita({route, navigation}){
                     />
                 </DivItens>
                 <PressableInitRecipeButton
-                 onPress={() => navigation.navigate('Preparo', {preparo: key.secao[1], indice: indice})}
+                 onPress={() => navigation.navigate('Preparo', {preparo: key, indice: indice})}
                  title='INICIAR RECEITA'
                  bgColor='#00663D'/>
 

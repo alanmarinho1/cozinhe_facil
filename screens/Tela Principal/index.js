@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState, useReducer } from 'react';
 import {
   Image,
   View,
@@ -28,8 +28,9 @@ export default function TelaPrincipal({navigation}){
   
   const [pesquisa, setPesquisa] = useState("")
   const [carregando, setCarregando] = useState(true)
-  const [dados, setDados] = useState({})
+  const [dados, setDados] = useState([])
   const [value, setValue] = useState([])
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
 
   function readFunction(){
 
@@ -41,57 +42,58 @@ export default function TelaPrincipal({navigation}){
         })
       })
       setValue(main)
-      console.log(main)
+      setDados(main)
       
-      // return () => database().ref('/').off('value', onValueChange);
+      return () => database().ref('/').off('value', onValueChange);
     });
   }
   
-  function AcessoReceita(){
+  function AcessoReceita({value}){
+    
     return(
       <FlatList 
         data={value}
-        keyExtractor={(item) => item.index}
-        renderItem={({item, index}) => <ListItem data={item} indice={index} />}
+        keyExtractor={(item) => item.indice}
+        renderItem={({item}) => <ListItem data={item} />}
       />
     )
   }
 
-  const ListItem = ({data, indice}) => {
+  const ListItem = ({data}) => {
     return(
-
       <DivRecipeScreen>
-
         <TouchableOpacity
          style={{height: '100%', width: '100%'}}
-         onPress={() => navigation.navigate('Receita', {key: data.key, indice: indice})}>
-          <IconFood source={require('../../assets/macarronada.jpg')} />
+         onPress={() => navigation.navigate('Receita', {key: data.key, indice: data.key.indice})}>
+          <IconFood source={{
+          uri: data.key.imagem,
+        }} />
           <RecipeName>{data.key.nome}</RecipeName>
           <RecipeType>Tipo da receita</RecipeType>
         </TouchableOpacity>
       </DivRecipeScreen>
-    )
+    );
   }
+
+  useEffect(() => {
+    readFunction()
+    setDados(value)
+  }, [])
       
 
   useEffect(
     () => {
-      readFunction()
-      
       if(pesquisa === ''){
-        setValue(pesquisa)
+        readFunction()
       }else{
-        setValue(
-          value.filter(item => {
-            if (item.key.nome.toLowerCase().indexOf(pesquisa.toLowerCase()) > -1) {
-              console.log('ta procurando')
-              return true
-            } else {
-              console.log('deu em nada')
-              return false
-            }
-          })
-        )
+        const newValue = dados.filter(item => {
+          if (item.key.nome.toLowerCase().includes(pesquisa.toLowerCase())) {
+            return true
+          } else {
+            return false
+          }
+        }) 
+        setValue(newValue)
       }
     
   }, [pesquisa]);
@@ -106,8 +108,8 @@ export default function TelaPrincipal({navigation}){
           placeholder='Pesquisar receitas'
           style={{height:35}}
           type="text"
-          onChangeText={(text) => setPesquisa(text)}
           value={pesquisa}
+          onChangeText={(text) => setPesquisa(text) }
           />
         </DivSearch>
         <DivMenu>
@@ -121,7 +123,7 @@ export default function TelaPrincipal({navigation}){
         <IconTitle source={require('../../assets/livro-receitas.png')} />
       </DivTitleScreen>
       <ViewReceitas contentContainerStyle={{alignItems: 'center'}}>
-        <AcessoReceita />
+        <AcessoReceita value={value} />
       </ViewReceitas>
     </View>
   )

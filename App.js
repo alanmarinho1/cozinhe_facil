@@ -16,8 +16,6 @@ import {
   DivUserDrawer, DrawerUserNoImage, DrawerUserImage, DivUserData } from './styles/styles'
 
 
-
-
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
@@ -32,9 +30,10 @@ function logoutFirebase(){
 }
 
 export default function App() {
+
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="TelaPrincipal" screenOptions={{ headerShown: false }}>
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Entrar" component={Entrar} />
         <Stack.Screen name="Registrar" component={Registrar} />
@@ -51,13 +50,13 @@ const CustomDrawer = ({ navigation }) => {
   return <DrawerContentScrollView {...navigation} style={{backgroundColor: '#FF9C33'}}>
     <DivUserDrawer>
       <DivUserData>
-        <Text style={{paddingTop: 10, fontSize: 18}}>Olá ~ nome usuario~</Text>
+        <Text style={{paddingTop: 10, fontSize: 18}}>Olá user.email</Text>
         <Text style={{marginTop: 3}}>~email~</Text>
       </DivUserData>
       <DrawerUserNoImage source={require('./assets/no-photo2.png')} />
     </DivUserDrawer>
     <DrawerItem
-      label="Sair"
+      label="Logoff"
       onPress={() => {firebase.auth()
         .signOut()
         .then(() => {

@@ -7,7 +7,6 @@ import { Component } from "react";
 export const Screen = styled.View`
   background-color: #FFF5EB;
   flex: 1;
-  border: 1px solid red;
 `;
 
 export const Logo = styled.Image`
