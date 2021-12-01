@@ -38,7 +38,7 @@ export default function Preparo({route, navigation}){
     }
 
     useEffect(() => {
-        carregaLista(preparo.conteudo)
+        carregaLista(preparo.secao[1].conteudo)
         console.log(indice)
     }, []);
     return(
@@ -101,7 +101,7 @@ export default function Preparo({route, navigation}){
                     title='FINALIZAR RECEITA'
                     bgColor='#00663D' />}
             <PressableCancelRecipeButton
-                onPress={() => readFunction(indice)}
+                onPress={() => navigation.goBack()}
                 title='CANCELAR RECEITA'
                 bgColor='#B32B19' />
 
